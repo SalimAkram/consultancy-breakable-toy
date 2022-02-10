@@ -2,10 +2,16 @@
 
 Welcome to your breakable toy! To get started,
 
-1. Fork this repo
-2. Skim through the rest of this README and the potential user stories in [`USER_STORIES.md`](USER_STORIES.md)
-3. Meet with your mentor to choose which stories are most appropriate. Together, create Shortcut stories for these user stories and add deadlines and estimates.
-4. Code! Be sure to follow the consulting workflow (described elsewhere)
+1. Install the following:
+https://git-fork.com
+https://dbeaver.io
+https://www.loom.com
+Tuple (ask a team member for an invite) (only for Mac)
+
+2. Fork this repo
+3. Skim through the rest of this README and the potential user stories in [`USER_STORIES.md`](USER_STORIES.md)
+4. Meet with your mentor to choose which stories are most appropriate. Together, create Shortcut stories for these user stories and add deadlines and estimates.
+5. Code! Be sure to follow the consulting workflow (described elsewhere)
 
 You may choose your own theme as long as it satisfies the goals of each user story. However, time is of the essence, so avoid getting overly creative (at the expense of coding time). A possible theme is provided below.
 
