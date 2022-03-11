@@ -1,32 +1,50 @@
 # Consultancy Breakable Toy
 
-Welcome to your breakable toy! To get started,
+## Introduction
 
-1. Install the following:
-https://git-fork.com
-https://dbeaver.io
-https://www.loom.com
-Tuple (ask a team member for an invite) (only for Mac)
+Welcome to _Squid Game_! In this project, you'll be creating a squid-themed breakable toy app to level up on the tools and practices we use in the Consulting operation.
 
-2. Fork this repo
-3. Skim through the rest of this README and the potential user stories in [`USER_STORIES.md`](USER_STORIES.md)
-4. Meet with your mentor to choose which stories are most appropriate. Together, create Shortcut stories for these user stories and add deadlines and estimates.
-5. Code! Be sure to follow the consulting workflow (described elsewhere)
+## Project Learning Goals
 
-You may choose your own theme as long as it satisfies the goals of each user story. However, time is of the essence, so avoid getting overly creative (at the expense of coding time). A possible theme is provided below.
+### Technical
 
-## Theme
+- Gain basic proficiency with
+  - Express
+  - Jest
+  - Objection and Knex
+  - React >= 16
+  - React Query
+  - TailwindCSS and Block Element Modifier CSS organization
 
-You will implement an app themed around _Squid Games_, as devised by someone who has never seen that TV show. Your app will track all your squids: their names, breeds, special powers, etc.
+### Professional
 
-## Breakable Toy Goals
+- Develop the communication skills necessary to collaborate effectively with other developers and project managers
+- Become efficient in strategizing and researching around unfamiliar concepts and tools
 
-1. Become familiar with key technologies used in the consultancy
-2. Assemble a resource for yourself to refer back to -- don't be afraid to add comments that will help you catch back up to speed later! You will not be penalized for comments or intentionally commented-out code during PR review.
-3. Provide a sandbox in the future for experimenting with other, more advanced tools (see, e.g., the Advanced user stories)
+## Project Setup
 
-## Other Requirements and Notes
+1. Install the following tools:
 
-- Write Jest tests for your methods and any helper functions
-- Write tests for any simple custom hooks using React Testing Library Custom Hooks package
-- Style your pages using Tailwind and BEM convention... but don't get too caught up on design. We want to make sure that you can apply basic Tailwind styles and understand the BEM approach
+- [Fork](https://git-fork.com): Git GUI
+- [DBeaver](https://dbeaver.io): Our go-to database GUI, supporting a wide range of databases
+- [Loom](https://www.loom.com): For recording screencasts
+- Tuple: Our favorite pairing tool; ask a team member for an invite. (only for Mac -- if you have Windows you'll use Zoom to pair instead)
+- VSCode: Code editor
+
+2. Fork this repo; you make make your repo public or private as long as you give your manager access
+3. Ask to be invited to the [Consultancy Breakable Toy Shortcut project](https://app.shortcut.com/consultancybreakabletoy)
+
+## CI and Tests
+
+We use GitHub Actions to run our CI (continuous integration) suite, which includes running our test suite and running some linting checks to ensure that your code adheres to particular style guidelines.
+
+To set up GitHub Actions:
+
+1. Rename `.github/workflows/main.yml.example` to `.github/workflows/main.yml`
+2. Merge the change into main. GitHub Actions should now run automatically whenever you create a pull request or merge into `main`.
+
+We use the Jest testing framework (and `react-hooks-testing-library` where necessary). We aspire to incorporate Cypress for more end-to-end TDD, but we're not there yet :) As a result, our test suite focuses on unit tests for methods and functions and includes React custom hook unit tests where beneficial.
+
+## Resources
+
+Learning materials referenced in stories can be found [here](./learningResources/index.md).
