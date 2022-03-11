@@ -51,7 +51,7 @@ We use the Jest testing framework (and `react-hooks-testing-library` where neces
 ## Story Workflow
 
 1. You'll be assigned a story by your mentor
-2. Dive in! If you have any questions, post them in the appropriate Slack channels (unless you're a contractor, in which case you should post questions in the Shortcut story and tag your manager; don't hesitate to record a Loom if helpful!)
+2. Dive in! If you have any questions, post them in the appropriate Slack channels
 3. When you're about ready to submit a PR, double-check...
    a. Have you written tests where appropriate?
    b. Does your test suite pass and does your code comply with style guidelines? (Check this easily by running the test, lint, and lint:style commands in your `package.json` files)
