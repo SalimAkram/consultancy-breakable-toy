@@ -2,7 +2,7 @@ import express from "express";
 import objection from "objection";
 const { ValidationError } = objection;
 
-import { Squid } from "../../models/index.js";
+import { Squid } from "../../models/index.js"; 
 
 const squidsRouter = new express.Router();
 
