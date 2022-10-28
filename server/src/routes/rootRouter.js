@@ -1,6 +1,6 @@
 import express from "express";
-import squidsRouter from "./api/squidsRouter.js";
 
+import { squidsRouter } from "./api/squidsRouter.js";
 import { clientRouter } from "./clientRouter.js";
 
 const rootRouter = new express.Router();

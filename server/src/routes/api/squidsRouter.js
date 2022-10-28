@@ -1,6 +1,4 @@
 import express from "express";
-import objection from "objection";
-const { ValidationError } = objection;
 
 import { Squid } from "../../models/index.js"; 
 
@@ -15,4 +13,4 @@ squidsRouter.get("/", async (req, res) => {
   }
 })
 
-export default squidsRouter;
+export { squidsRouter };

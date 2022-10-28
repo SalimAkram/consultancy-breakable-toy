@@ -14,4 +14,4 @@ class SquidSeeder {
   }
 }
 
-export default SquidSeeder;
+export { SquidSeeder };

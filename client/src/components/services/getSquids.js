@@ -1,16 +1,14 @@
+const axios = require("axios");
+
 const getSquids = async () => {
   try {
-    const response = await fetch("api/v1/squids");
-    if (!response.ok) {
-      const errorMessage = `${response.status} (${response.statusText})`;
-      const error = new Error(errorMessage);
-      throw error;
-    }
-    const body = await response.json();
+    const response = await axios.get("api/v1/squids");
+    //error Handling logic here
+    const body = await response;
     return body;
   } catch (error) {
-    console.error(`Error in fetch: ${error.message}`)
+    console.error(error);
   }
 };
   
-export default getSquids;
+export { getSquids };
