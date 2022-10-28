@@ -5,6 +5,7 @@ import { Squid } from "../../models/index.js"
 
 class SquidSeeder {
   static async seed() {
+    // const squids = await new Factory(Squid).createMany(20)
     const squidData = [
       {
         name: "dudeGuy Boogie",

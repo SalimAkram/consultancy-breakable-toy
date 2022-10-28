@@ -13,7 +13,7 @@ exports.up = async (knex) => {
     console.log(`Creating ${tableName}`);
     return knex.schema.createTable(tableName, (table) => {
       table.bigIncrements("id");
-      table.string("name").notNullable().unique();
+      table.string("name").notNullable();
       table.string("species").notNullable();
       table.string("specialPower");
       table.integer("experiencePoints").notNullable().defaultTo(0)
