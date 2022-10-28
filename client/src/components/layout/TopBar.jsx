@@ -10,6 +10,9 @@ export const TopBar = () => (
         <li>
           <Link to="/">Home</Link>
         </li>
+        <li>
+          <Link to="/squids">Squids</Link>
+        </li>
       </ul>
     </div>
   </div>
