@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { TopBar } from "./layout/TopBar";
 import "../style/main.pcss";
 
-import SquidShow from "../containers/SquidShow.js"
+import SquidShow from "../containers/SquidShow.jsx"
 
 const App = () => {
   /*
