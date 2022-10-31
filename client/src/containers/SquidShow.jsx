@@ -1,27 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import { getSquids } from "../components/services/getSquids";
-import Squids from "../components/squids/Squids";
+import axios from "axios";
+import { useQuery } from "react-query";
+
+import { Squids } from "../components/squids/Squids";
 
 const SquidShow = () => {
-  const [squids, setSquids] = useState({});
+  const queryInfo = useQuery("squids", () => axios.get("api/v1/squids").then((res) => res.data));
 
-  useEffect(() => {
-    getSquids().then((body) => {
-      if (!body) {
-        console.log(`there was an error`);
-      } else {
-        console.log("setting state for the squids coming from the database");
-        setSquids(body.data.squids);
-      }
-    });
-  }, []);
-
-  return (
-    <div className="squid__show__container">
-      <Squids squids={squids} />
+  return queryInfo.isLoading ? (
+    "loading........"
+  ) : (
+    <div className="squid">
+      <Squids squids={queryInfo.data.squids} />
     </div>
   );
 };
 
-export default SquidShow;
+export { SquidShow };

@@ -1,7 +1,7 @@
 import React from "react";
 
 const SquidTile = (props) => (
-  <div className="squid__show__container__squids_tile">
+  <div>
     <br />
     <li>Name: {props.name}</li>
     <li>Species: {props.species}</li>
@@ -10,4 +10,4 @@ const SquidTile = (props) => (
   </div>
 );
 
-export default SquidTile;
+export { SquidTile };

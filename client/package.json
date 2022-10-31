@@ -78,6 +78,7 @@
     "react-hot-loader": "^4.12.21",
     "react-input-mask": "^3.0.0-alpha.2",
     "react-query": "^3.34.8",
+    "react-query-devtools": "^2.6.3",
     "react-router-dom": "5.2",
     "react-select": "^5.2.2",
     "react-toast-notifications": "^2.4.3",
