@@ -29,13 +29,13 @@ const SquidShow = () => {
   ) : (
     <div className="squid">
       <Squids squids={queryInfo.data.squids.results} />
-      <button type="button" onClick={() => setPage((old) => old - 1)}>
+      <button type="button" className="button" onClick={() => setPage((old) => old - 1)}>
         Previous
       </button>
-      <button type="button" onClick={() => setPage((old) => old + 1)}>
+      <button type="button" className="button" onClick={() => setPage((old) => old + 1)}>
         Next
       </button>
-      <span>
+      <span type="button" className="button">
         Current Page: {page + 1} {queryInfo.isFetching ? "....." : ""}
       </span>
     </div>
