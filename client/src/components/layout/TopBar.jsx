@@ -13,6 +13,9 @@ export const TopBar = () => (
         <li className="routes">
           <Link to="/squids">Squids</Link>
         </li>
+        <li>
+          <Link to="/new">Add a Squid</Link>
+        </li>
       </ul>
     </div>
   </div>
