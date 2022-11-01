@@ -3,7 +3,7 @@ import "../../../test/factories/factories.js";
 import { Squid } from "../../models/index.js";
 class SquidSeeder {
   static async seed() {
-    const squids = await new Factory(Squid).createMany(20)
+    const squids = await new Factory(Squid).createMany(50)
 
     for(const singleSquidData of squids) {
       const currentSquid = await Squid.query().findOne({ name: singleSquidData.name })

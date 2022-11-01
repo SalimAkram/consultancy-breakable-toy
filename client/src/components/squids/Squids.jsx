@@ -2,8 +2,8 @@ import React from "react";
 
 import { SquidTile } from "./SquidTile";
 
-const Squids = (props) => {
-  const squidsArray = props.squids.map((squid) => (
+const Squids = ({ squids }) => {
+  const squidsArray = squids.map((squid) => (
     <div className="squid__tile" key={squid.id}>
       <SquidTile
         name={squid.name}
