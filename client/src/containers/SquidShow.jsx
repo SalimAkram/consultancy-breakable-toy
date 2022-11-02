@@ -34,9 +34,10 @@ const SquidShow = () => {
       </button>
       <button type="button" className="button" onClick={() => setPage((old) => old + 1)}>
         Next
-      </button>
-      <span type="button" className="button">
-        Current Page: {page + 1} {queryInfo.isFetching ? "....." : ""}
+      </button>{" "}
+      <br />
+      <span className="page">
+        Page: {page + 1} {queryInfo.isFetching ? "....." : ""}
       </span>
     </div>
   );

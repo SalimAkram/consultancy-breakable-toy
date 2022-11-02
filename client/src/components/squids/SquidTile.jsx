@@ -4,7 +4,6 @@ const SquidTile = (props) => {
   const { name, species, specialPower, experiencePoints } = props;
   return (
     <div className="tile">
-      <br />
       <li>Name: {name}</li>
       <li>Species: {species}</li>
       <li>Special Power: {specialPower}</li>

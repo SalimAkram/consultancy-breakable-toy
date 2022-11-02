@@ -1,5 +1,5 @@
 import React from "react";
 
-const SquidForm = () => <div className="container"> this is the squid form</div>;
+const SquidForm = () => <div className="squid-form">This is the squid form</div>;
 
 export { SquidForm };
