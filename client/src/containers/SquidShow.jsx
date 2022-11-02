@@ -27,7 +27,7 @@ const SquidShow = () => {
   return queryInfo.isLoading ? (
     "loading........"
   ) : (
-    <div className="container">
+    <div className="squid">
       <Squids squids={queryInfo.data.squids.results} />
       <button type="button" className="button" onClick={() => setPage((old) => old - 1)}>
         Previous

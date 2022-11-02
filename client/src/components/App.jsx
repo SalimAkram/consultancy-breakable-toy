@@ -10,6 +10,8 @@ import { SquidShow } from "../containers/SquidShow";
 import { SquidForm } from "./forms/SquidForm";
 import { TopBar } from "./layout/TopBar";
 import "../style/main.pcss";
+import "../style/squids/squids.pcss";
+import "../style/ui/buttons.pcss";
 
 const App = () => {
   /*
