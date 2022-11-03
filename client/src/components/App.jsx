@@ -36,7 +36,6 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/squids" component={SquidShow} />
-          <Route exact path="/new" component={SquidForm} />
         </Switch>
       </Router>
       <ReactQueryDevtools initialIsOpen={false} />

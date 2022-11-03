@@ -1,5 +1,13 @@
 import React from "react";
 
-const Homepage = () => <div className="homepage">Welcome To The Squid Games</div>;
+import { SquidForm } from "../forms/SquidForm";
+
+const Homepage = () => (
+  <div className="homepage">
+    <div>
+      <SquidForm />
+    </div>
+  </div>
+);
 
 export { Homepage };

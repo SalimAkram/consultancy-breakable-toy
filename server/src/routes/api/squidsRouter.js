@@ -17,4 +17,9 @@ squidsRouter.get("/", nextWrapper(async (req, res) => {
   })
 );
 
+squidsRouter.post("/", nextWrapper(async (req, res) => {
+  console.log(`response ${res}`);
+  console.log(`request ${req}`);
+}))
+
 export { squidsRouter };
