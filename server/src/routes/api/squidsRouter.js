@@ -8,7 +8,6 @@ const squidsRouter = new express.Router();
 squidsRouter.get("/", nextWrapper(async (req, res) => {
   try {
     const squids = await Squid.query()
-    .page(req.query.pageOffset, req.query.pageSize)
     .orderBy("createdAt", "desc")
     res.status(200).json({ squids: squids })
     } catch (error) {

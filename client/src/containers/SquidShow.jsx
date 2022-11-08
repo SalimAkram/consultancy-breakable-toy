@@ -12,7 +12,7 @@ const SquidShow = () => {
     "loading........"
   ) : (
     <div className="squids">
-      <Squids squids={queryInfo.data.squids.results} />
+      <Squids squids={queryInfo.data.squids} />
     </div>
   );
 };
