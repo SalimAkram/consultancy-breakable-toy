@@ -11,7 +11,7 @@ const SquidShow = () => {
   return queryInfo.isLoading ? (
     "loading........"
   ) : (
-    <div className="squid">
+    <div className="squids">
       <Squids squids={queryInfo.data.squids.results} />
     </div>
   );

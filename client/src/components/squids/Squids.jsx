@@ -4,7 +4,7 @@ import { SquidTile } from "./SquidTile";
 
 const Squids = ({ squids }) => {
   const squidsArray = squids.map((squid) => (
-    <div className="squid__tile" key={squid.id}>
+    <div className="squids__tile" key={squid.id}>
       <SquidTile
         name={squid.name}
         species={squid.species}
@@ -14,7 +14,7 @@ const Squids = ({ squids }) => {
     </div>
   ));
 
-  return <div className="squid__show">{squidsArray}</div>;
+  return <div className="squids__show">{squidsArray}</div>;
 };
 
 export { Squids };
