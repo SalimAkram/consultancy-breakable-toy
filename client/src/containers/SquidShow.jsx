@@ -27,18 +27,16 @@ const SquidShow = () => {
   return queryInfo.isLoading ? (
     "loading........"
   ) : (
-    <div className="squid">
+    <div className="squids">
       <Squids squids={queryInfo.data.squids.results} />
-      <button type="button" className="button" onClick={() => setPage((old) => old - 1)}>
+      <button type="button" className="squids__button" onClick={() => setPage((old) => old - 1)}>
         Previous
       </button>
-      <button type="button" className="button" onClick={() => setPage((old) => old + 1)}>
+      <button type="button" className="squids__button" onClick={() => setPage((old) => old + 1)}>
         Next
       </button>{" "}
       <br />
-      <span className="page">
-        Page: {page + 1} {queryInfo.isFetching ? "....." : ""}
-      </span>
+      Page: {page + 1} {queryInfo.isFetching ? "....." : ""}
     </div>
   );
 };

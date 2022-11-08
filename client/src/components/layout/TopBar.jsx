@@ -4,16 +4,14 @@ import { Link } from "react-router-dom";
 
 export const TopBar = () => (
   <div className="top-bar">
-    <div className="top-bar-left">
-      <ul className="menu">
-        <li className="title">The Squids</li>
-        <li className="nav-link">
-          <Link to="/">Home</Link>
-        </li>
-        <li className="nav-link">
-          <Link to="/squids">Squids</Link>
-        </li>
-      </ul>
-    </div>
+    <ul className="top-bar__menu">
+      <li className="top-bar__title">The Squids</li>
+      <li className="top-bar__nav-link">
+        <Link to="/">Home</Link>
+      </li>
+      <li className="top-bar__nav-link">
+        <Link to="/squids">Squids</Link>
+      </li>
+    </ul>
   </div>
 );
