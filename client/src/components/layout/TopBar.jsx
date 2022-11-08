@@ -13,9 +13,6 @@ export const TopBar = () => (
         <li className="nav-link">
           <Link to="/squids">Squids</Link>
         </li>
-        <li className="nav-link">
-          <Link to="/new">Add a Squid</Link>
-        </li>
       </ul>
     </div>
   </div>

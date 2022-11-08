@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import axios from "axios";
 import { useQuery } from "react-query";
@@ -6,39 +6,13 @@ import { useQuery } from "react-query";
 import { Squids } from "../components/squids/Squids";
 
 const SquidShow = () => {
-  const [page, setPage] = useState(0);
-  // refactor this for fns to react state setters
-
-  if (page < 0) {
-    setPage(0);
-  }
-
-  const queryInfo = useQuery(["squids", { page }], () =>
-    axios
-      .get("api/v1/squids", {
-        params: {
-          pageSize: 5,
-          pageOffset: page,
-        },
-      })
-      .then((res) => res.data)
-  );
+  const queryInfo = useQuery("squids", () => axios.get("api/v1/squids").then((res) => res.data));
 
   return queryInfo.isLoading ? (
     "loading........"
   ) : (
     <div className="squid">
       <Squids squids={queryInfo.data.squids.results} />
-      <button type="button" className="button" onClick={() => setPage((old) => old - 1)}>
-        Previous
-      </button>
-      <button type="button" className="button" onClick={() => setPage((old) => old + 1)}>
-        Next
-      </button>{" "}
-      <br />
-      <span className="page">
-        Page: {page + 1} {queryInfo.isFetching ? "....." : ""}
-      </span>
     </div>
   );
 };
