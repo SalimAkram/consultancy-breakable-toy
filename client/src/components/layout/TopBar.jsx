@@ -6,10 +6,10 @@ export const TopBar = () => (
   <div className="top-bar">
     <ul className="top-bar__menu">
       <li className="top-bar__title">The Squids</li>
-      <li className="top-bar__nav-link">
+      <li className="top-bar__nav-link top-bar__nav-link--active">
         <Link to="/">Home</Link>
       </li>
-      <li className="top-bar__nav-link">
+      <li className="top-bar__nav-link top-bar__nav-link--active">
         <Link to="/squids">Squids</Link>
       </li>
     </ul>

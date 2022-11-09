@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import axios from "axios";
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
 
 import { getPageCount } from "../components/services/getPageCount";
 import { Squids } from "../components/squids/Squids";
@@ -29,7 +28,11 @@ const SquidShow = () => {
 
   const pageCount = getPageCount(queryInfo.data?.squids.total, pageSize);
   const pages = pageCount?.map((pageNumber) => (
-    <button type="button" onClick={() => setPage(pageNumber)}>
+    <button
+      className="squids__pages squids__pages--active"
+      type="button"
+      onClick={() => setPage(pageNumber)}
+    >
       {pageNumber + 1}
     </button>
   ));
@@ -42,15 +45,23 @@ const SquidShow = () => {
     <div className="squids">
       <Squids squids={queryInfo.data.squids.results} />
       <div className="squids__buttons">
-        <button type="button" className="squids__button" onClick={() => setPage((old) => old - 1)}>
+        <button
+          type="button"
+          className="squids__button squids__button--active"
+          onClick={() => setPage((old) => old - 1)}
+        >
           Previous
         </button>
-        <button type="button" className="squids__button" onClick={() => setPage((old) => old + 1)}>
+        <button
+          type="button"
+          className="squids__button squids__button--active"
+          onClick={() => setPage((old) => old + 1)}
+        >
           Next
         </button>
       </div>
       <div className="squids__page-count">Page: {page + 1}</div>
-      <div className="squids__pages">{pages}</div>
+      <div>{pages}</div>
     </div>
   );
 };
