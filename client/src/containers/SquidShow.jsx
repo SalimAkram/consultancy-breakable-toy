@@ -29,6 +29,7 @@ const SquidShow = () => {
   const pageCount = getPageCount(queryInfo.data?.squids.total, pageSize);
   const pages = pageCount?.map((pageNumber) => (
     <button
+      key={pageNumber}
       className="squids__pages squids__pages--active"
       type="button"
       onClick={() => setPage(pageNumber)}

@@ -7,12 +7,14 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { SquidShow } from "../containers/SquidShow";
+import { SquidForm } from "./forms/SquidForm";
 import { TopBar } from "./layout/TopBar";
 
 import "../style/main.pcss";
 import "../style/squids/squids.pcss";
 import "../style/ui/buttons.pcss";
 import "../style/ui/navigation.pcss";
+import "../style/forms/squidform.pcss";
 
 const App = () => {
   /*
@@ -30,7 +32,7 @@ const App = () => {
       <Router>
         <TopBar />
         <Switch>
-          <Route exact path="/" />
+          <Route exact path="/" component={SquidForm} />
           <Route exact path="/squids" component={SquidShow} />
         </Switch>
       </Router>
