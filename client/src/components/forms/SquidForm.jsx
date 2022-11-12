@@ -2,6 +2,9 @@ import React from "react";
 
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+
+import { validInput } from "../services/validInput";
 
 const SquidForm = () => {
   const {
@@ -18,27 +21,27 @@ const SquidForm = () => {
     },
   });
 
-  const onSubmit = async (squidValues) => {
-    await axios
-      .post("api/v1/squids", squidValues)
-      .then((response) => {
-        console.log("ok", response);
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log("e1", error.response.data);
-          console.log("e2", error.response.status);
-          console.log("e3", error.response.headers);
-        } else if (error.request) {
-          console.log("e4", error.request);
-        } else {
-          console.log("Error", error.message);
-        }
-        console.log(error.config);
-      });
+  const squidPost = async (postSquidData) => {
+    await axios.post("api/v1/squids", postSquidData);
+  };
+  const { mutate, isLoading, isSuccess } = useMutation((squidValues) => squidPost(squidValues));
+  const onSubmit = (squidValues) => {
+    const postSquidData = validInput(squidValues);
+    if (postSquidData.errors) {
+      alert('one of the fields is blank, nice try >:(');
+    }
+    mutate(postSquidData, {
+      onSettled: () => alert('cycle finished'),
+      onSuccess: () => {
+        alert("it worked");
+        reset();
+      },
+      onError: () => alert("it failed"),
+    });
   };
 
-  const refresh = () => {};
+  console.log("this is loading", isLoading);
+  console.log("this was a success", isSuccess);
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
@@ -69,30 +72,25 @@ const SquidForm = () => {
       <div>
         Special Powers
         <label className="form__label" htmlFor="specialPower">
-          <input
-            className="form__input"
-            type="checkbox"
-            {...register("specialPower")}
-            value="ink"
-          />
+          <input className="form__input" type="radio" {...register("specialPower")} value="ink" />
           Ink
           <input
             className="form__input"
-            type="checkbox"
+            type="radio"
             {...register("specialPower")}
             value="camouflage"
           />
           Camouflage
           <input
             className="form__input"
-            type="checkbox"
+            type="radio"
             {...register("specialPower")}
             value="bioluminescence"
           />
           Bioluminescence
           <input
             className="form__input"
-            type="checkbox"
+            type="radio"
             {...register("specialPower")}
             value="flight"
           />
@@ -129,7 +127,7 @@ const SquidForm = () => {
         <button type="button" onClick={() => reset()} className="form__button form__button--active">
           clear
         </button>
-        <button type="button" onClick={refresh} className="form__button form__button--active">
+        <button type="button" onClick={() => reset()} className="form__button form__button--active">
           Refresh
         </button>
       </div>
