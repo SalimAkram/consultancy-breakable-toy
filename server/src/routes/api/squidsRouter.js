@@ -3,7 +3,6 @@ import objection from "objection";
 const { ValidationError } = objection
 
 import { cleanUserInput } from "../../db/services/cleanUserInput.js";
-import { updateSquid } from "../../db/services/updateSquid.js";
 import { Squid } from "../../models/index.js"; 
 import { nextWrapper } from "../lib/nextWrapper.js";
 
