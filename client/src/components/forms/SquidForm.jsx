@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
-import axios from "axios";
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import { Redirect } from "react-router-dom";
 
+import { useSquidMutation } from "../hooks/useSquidMutation";
 import { validInput } from "../services/validInput";
 
 const SquidForm = () => {
+  const [redirect, setRedirect] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [inputErrors, setInputErrors] = useState({});
+
   const {
     register,
     handleSubmit,
@@ -20,31 +24,38 @@ const SquidForm = () => {
       experiencePoints: "",
     },
   });
-
-  const squidPost = async (postSquidData) => {
-    await axios.post("api/v1/squids", postSquidData);
+  const squidPost = useSquidMutation();
+  const clear = () => {
+    reset();
+    setInputErrors({});
+    setSuccess(false);
   };
-  const { mutate, isLoading, isSuccess } = useMutation((squidValues) => squidPost(squidValues));
-  const onSubmit = (squidValues) => {
-    const postSquidData = validInput(squidValues);
+
+  if (redirect) {
+    return <Redirect to="/squids" />;
+  }
+
+  const onSubmit = async (squidFormData) => {
+    const postSquidData = validInput(squidFormData);
     if (postSquidData.errors) {
-      alert('one of the fields is blank, nice try >:(');
+      setInputErrors(postSquidData.errors);
+    } else {
+      squidPost.mutate(postSquidData, {
+        onSettled: () => {},
+        onSuccess: () => {
+          clear();
+          setSuccess(true);
+        },
+        onError: (e) => {
+          setInputErrors(e.response.data.errors);
+        },
+      });
     }
-    mutate(postSquidData, {
-      onSettled: () => alert('cycle finished'),
-      onSuccess: () => {
-        alert("it worked");
-        reset();
-      },
-      onError: () => alert("it failed"),
-    });
   };
-
-  console.log("this is loading", isLoading);
-  console.log("this was a success", isSuccess);
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      {success}
       <div>
         Name
         <label className="form__label" htmlFor="name">
@@ -54,7 +65,8 @@ const SquidForm = () => {
             {...register("name", { required: "Your squids gotta have a name!" })}
             id="name"
           />
-          <p className="form__error">{errors.name?.message}</p>
+          {inputErrors.name && <p className="form__error">Invalid Input</p>}
+          {inputErrors && <p className="form__error">{inputErrors.data?.name[0]?.message}</p>}
         </label>
       </div>
       <div>
@@ -66,7 +78,7 @@ const SquidForm = () => {
             {...register("species", { required: "Your squids gotta have a species!" })}
             id="species"
           />
-          <p className="form__error">{errors.species?.message}</p>
+          {inputErrors.species && <p className="form__error">Invalid Input</p>}
         </label>
       </div>
       <div>
@@ -103,7 +115,7 @@ const SquidForm = () => {
           <select
             className="form__input"
             {...register("experiencePoints", {
-              required: "Your squid gotta have some experience points!",
+              required: "Your squid has gotta have some experience points!",
             })}
           >
             <option value="">Select...</option>
@@ -122,13 +134,22 @@ const SquidForm = () => {
           <p className="form__error">{errors.experiencePoints?.message}</p>
         </label>
       </div>
+      {success && (
+        <div>
+          <p className="squids__success">Squid Post Successful!</p>
+          <button
+            type="button"
+            onClick={() => setRedirect(true)}
+            className="form__button form__button--active"
+          >
+            click to see your new Squid!
+          </button>
+        </div>
+      )}
       <div>
         <input type="submit" value="submit" className="form__button form__button--active" />
-        <button type="button" onClick={() => reset()} className="form__button form__button--active">
+        <button type="button" onClick={() => clear()} className="form__button form__button--active">
           clear
-        </button>
-        <button type="button" onClick={() => reset()} className="form__button form__button--active">
-          Refresh
         </button>
       </div>
     </form>
