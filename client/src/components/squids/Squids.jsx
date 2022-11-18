@@ -11,6 +11,8 @@ const Squids = ({ squids }) => {
         specialPower={squid.specialPower}
         experiencePoints={squid.experiencePoints}
       />
+
+      <SquidTile squid={squid} />
     </div>
   ));
 
