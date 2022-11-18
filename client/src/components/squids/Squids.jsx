@@ -3,7 +3,7 @@ import React from "react";
 import { SquidTile } from "./SquidTile";
 
 const Squids = ({ squids }) => {
-  const squidsArray = squids.map((squid) => (
+  const squidsArray = squids?.map((squid) => (
     <div className="squids__tile" key={squid.id}>
       <SquidTile squid={squid} />
     </div>
