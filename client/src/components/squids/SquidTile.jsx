@@ -1,13 +1,18 @@
 import React from "react";
 
-const SquidTile = (props) => (
-  <div>
-    <br />
-    <li>Name: {props.name}</li>
-    <li>Species: {props.species}</li>
-    <li>Special Power: {props.specialPower}</li>
-    <li>Experience Points: {props.experiencePoints}</li>
-  </div>
-);
+const SquidTile = ({ squid }) => {
+  const { name, species, specialPower, experiencePoints } = squid;
+
+  return (
+    <div className="squids__tile">
+      <ul className="squids__list">
+        <li className="squids__property">Name: {name}</li>
+        <li className="squids__property">Species: {species}</li>
+        <li className="squids__property">Special Power: {specialPower}</li>
+        <li className="squids__property">Experience Points: {experiencePoints}</li>
+      </ul>
+    </div>
+  );
+};
 
 export { SquidTile };
