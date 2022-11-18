@@ -41,7 +41,6 @@ const SquidForm = () => {
       setInputErrors(postSquidData.errors);
     } else {
       squidPost.mutate(postSquidData, {
-        onSettled: () => {},
         onSuccess: () => {
           clear();
           setSuccess(true);
