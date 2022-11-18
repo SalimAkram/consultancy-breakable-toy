@@ -10,12 +10,8 @@ import { Loading } from "../components/ui/Loading";
 const SquidShow = () => {
   const [page, setPage] = useState(0);
 
-  if (page < 0) {
-    setPage(0);
-  }
-
   const pageSize = 10;
-  const queryInfo = useQuery(["squids", { page }], () =>
+  const fetchSquids = () =>
     axios
       .get("api/v1/squids", {
         params: {
@@ -23,12 +19,16 @@ const SquidShow = () => {
           pageOffset: page,
         },
       })
-      .then((res) => res.data)
-  );
+      .then((res) => res.data);
+
+  const queryInfo = useQuery(["squids", { page }], fetchSquids, {
+    keepPreviousData: true,
+  });
 
   const pageCount = getPageCount(queryInfo.data?.squids.total, pageSize);
   const pages = pageCount?.map((pageNumber) => (
     <button
+      key={pageNumber}
       className="squids__pages squids__pages--active"
       type="button"
       onClick={() => setPage(pageNumber)}
@@ -37,18 +37,20 @@ const SquidShow = () => {
     </button>
   ));
 
+  console.log(queryInfo);
+
   return queryInfo.isLoading ? (
     <div className="squids">
       <Loading />
     </div>
   ) : (
     <div className="squids">
-      <Squids squids={queryInfo.data.squids.results} />
       <div className="squids__buttons">
         <button
           type="button"
           className="squids__button squids__button--active"
           onClick={() => setPage((old) => old - 1)}
+          disabled={page === 0}
         >
           Previous
         </button>
@@ -60,6 +62,7 @@ const SquidShow = () => {
           Next
         </button>
       </div>
+      <Squids squids={queryInfo.data?.squids.results} />
       <div className="squids__page-count">Page: {page + 1}</div>
       <div>{pages}</div>
     </div>
