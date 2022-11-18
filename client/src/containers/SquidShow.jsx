@@ -44,9 +44,9 @@ const SquidShow = () => {
       <Loading />
     </div>
   ) : (
-    <div className="squids">
+    <div className="pager">
       <Squids squids={queryInfo.data?.squids.results} />
-      <div className="squids__buttons">
+      <div className="pager__buttons">
         <button
           type="button"
           className="squids__button squids__button--active"
