@@ -3,16 +3,15 @@ import React from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 
-import { Squids } from "../components/squids/Squids";
-import { Loading } from "../components/ui/Loading";
+import { Squids } from "./Squids";
 
-const SquidShow = () => {
+const SquidIndex = () => {
   const { data, isLoading } = useQuery("squids", () =>
     axios.get("api/v1/squids").then((res) => res.data)
   );
 
   if (isLoading) {
-    return <Loading />;
+    return <h1>.....</h1>;
   }
 
   return (
@@ -22,4 +21,4 @@ const SquidShow = () => {
   );
 };
 
-export { SquidShow };
+export { SquidIndex };
