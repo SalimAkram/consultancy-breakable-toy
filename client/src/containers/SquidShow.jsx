@@ -45,6 +45,7 @@ const SquidShow = () => {
     </div>
   ) : (
     <div className="squids">
+      <Squids squids={queryInfo.data?.squids.results} />
       <div className="squids__buttons">
         <button
           type="button"
@@ -62,7 +63,6 @@ const SquidShow = () => {
           Next
         </button>
       </div>
-      <Squids squids={queryInfo.data?.squids.results} />
       <div className="squids__page-count">Page: {page + 1}</div>
       <div>{pages}</div>
     </div>
