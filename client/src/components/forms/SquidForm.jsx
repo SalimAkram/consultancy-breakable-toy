@@ -67,6 +67,7 @@ const SquidForm = () => {
           />
           {inputErrors.name && <p className="form__error">Invalid Input</p>}
           {inputErrors && <p className="form__error">{inputErrors.data?.name[0]?.message}</p>}
+          <p className="form__error">{errors.name?.message}</p>
         </label>
       </div>
       <div>
@@ -79,6 +80,7 @@ const SquidForm = () => {
             id="species"
           />
           {inputErrors.species && <p className="form__error">Invalid Input</p>}
+          <p className="form__error">{errors.species?.message}</p>
         </label>
       </div>
       <div>
