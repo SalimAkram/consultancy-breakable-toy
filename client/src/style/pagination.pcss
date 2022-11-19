@@ -1,0 +1,28 @@
+.pagination__buttons {
+    font-size: 1.15rem;  
+    
+    & .pagination__button{
+      background-color: #C9ADA7;
+      border: 1px solid #496869;
+      border-radius: 1rem;
+      padding: 10px 20px;
+      margin: 10px 10px;
+      text-decoration: none;
+  }
+
+   & .pagination__pages {
+    padding: .2rem .2rem;
+    @apply my-1 mx-1;
+    color: blue;
+  }
+
+  & .pagination__pages--active:hover {
+    color: #49695E;
+    text-decoration: underline;
+  }
+
+  & .pagination__button--active:hover {
+    color: #49695E;
+    text-decoration: underline;
+  }
+}

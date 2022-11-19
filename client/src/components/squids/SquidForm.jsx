@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 
 import { useForm } from "react-hook-form";
-import { Redirect } from "react-router-dom";
 
 import { useSquidMutation } from "../hooks/useSquidMutation";
 import { validInput } from "../services/validInput";
 
-const SquidForm = () => {
-  const [redirect, setRedirect] = useState(false);
+const SquidForm = ({ setDisplay, setFormSuccess, setRedirect }) => {
   const [success, setSuccess] = useState(false);
   const [inputErrors, setInputErrors] = useState({});
 
@@ -31,10 +29,6 @@ const SquidForm = () => {
     setSuccess(false);
   };
 
-  if (redirect) {
-    return <Redirect to="/squids" />;
-  }
-
   const onSubmit = async (squidFormData) => {
     const postSquidData = validInput(squidFormData);
     if (postSquidData.errors) {
@@ -43,7 +37,8 @@ const SquidForm = () => {
       squidPost.mutate(postSquidData, {
         onSuccess: () => {
           clear();
-          setSuccess(true);
+          setDisplay(false);
+          setFormSuccess(true);
         },
         onError: (e) => {
           setInputErrors(e.response.data.errors);
@@ -54,10 +49,9 @@ const SquidForm = () => {
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
-      {success}
       <div>
-        Name
         <label className="form__label" htmlFor="name">
+          Name
           <input
             className="form__input"
             type="text"
@@ -70,8 +64,8 @@ const SquidForm = () => {
         </label>
       </div>
       <div>
-        Species
         <label className="form__label" htmlFor="species">
+          Species
           <input
             className="form__input"
             type="text"

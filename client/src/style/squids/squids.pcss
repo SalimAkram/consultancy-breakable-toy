@@ -1,49 +1,41 @@
 .squids {
   font-size: 22px;
   margin: auto;
-  max-width: 700px;
+  max-width: 800px;
   text-align: center;
   @apply text-center m-auto;
+
+  & .squids__show {
+    background-color: #E7D6CD;
+    border-radius: 1rem;
+    padding: 10px 10px;
+    @apply my-5 mx-20;
+    height: auto;
+  }
+  
+  & .squids__tile {
+    background-color: #D1B1A0;
+    border-radius: 1rem;
+    padding: 10px 10px;
+    @apply my-5 mx-5;
+  }
+
+  & .squids__list {
+    border-radius: 1rem;
+  }
+  
+  & .squids__property {
+    padding: .4rem .4rem;
+    border: 1px solid #0E0E19;
+    border-radius: 5px;
+    margin: 5px
+  }
+  
+  & .squids__success {
+    color: green;
+  }
 }
 
-.squids__show {
-  background-color: #E7D6CD;
-  border-radius: 1rem;
-  padding: 10px 10px;
-  margin: 20px 50px;
-  @apply my-12 mx-20;
-  max-width: auto;
-  height: auto;
-}
 
-.squids__tile {
-  background-color: #D1B1A0;
-  border-radius: 1rem;
-  padding: 10px 10px;
-  margin: 10px 10px;
-}
 
-.squids__list {
-  border-radius: 1rem;
-}
 
-.squids__item {
-  padding: .4rem .4rem;
-  border: 1px solid #0E0E19;
-  border-radius: 5px;
-  margin: 5px
-}
-
-.squids__pages {
-  padding: .2rem .2rem;
-  color: blue;
-}
-
-.squids__success {
-  color: green;
-}
-
-.squids__pages--active:hover {
-  color: #49695E;
-  text-decoration: underline;
-}
