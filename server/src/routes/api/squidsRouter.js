@@ -25,7 +25,7 @@ squidsRouter.post("/", nextWrapper(async (req, res) => {
   const formInput = cleanUserInput(body)
   try {
     const newSquid = await Squid.query().insertAndFetch(formInput)
-    return res.status(201).json( { newSquid })
+    return res.status(201).json({ newSquid })
   } catch (error) {
     if (error instanceof ValidationError) {
     res.status(400).json({ errors: error })

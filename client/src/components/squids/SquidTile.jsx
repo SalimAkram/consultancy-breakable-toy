@@ -2,7 +2,6 @@ import React from "react";
 
 const SquidTile = ({ squid }) => {
   const { name, species, specialPower, experiencePoints } = squid;
-
   return (
     <div className="squids__tile">
       <ul className="squids__list">

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 import { useForm } from "react-hook-form";
 
-import { useSquidMutation } from "../hooks/useSquidMutation";
 import { validInput } from "../services/validInput";
+import { useCreateSquidMutation } from "./hooks/useCreateSquidMutation";
 
 const SquidForm = ({ setDisplay, setFormSuccess, setRedirect }) => {
   const [success, setSuccess] = useState(false);
@@ -22,7 +22,7 @@ const SquidForm = ({ setDisplay, setFormSuccess, setRedirect }) => {
       experiencePoints: "",
     },
   });
-  const squidPost = useSquidMutation();
+  const squidPost = useCreateSquidMutation();
   const clear = () => {
     reset();
     setInputErrors({});

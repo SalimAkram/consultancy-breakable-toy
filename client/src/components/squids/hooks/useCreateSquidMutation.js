@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useMutation } from "react-query";
 
-const useSquidMutation = () =>
+const useCreateSquidMutation = () =>
   useMutation(async (squidValues) => {
     await axios
       .post("api/v1/squids", squidValues)
@@ -11,4 +11,4 @@ const useSquidMutation = () =>
       });
   });
 
-export { useSquidMutation };
+export { useCreateSquidMutation };
