@@ -2,15 +2,16 @@ module.exports = {
   extends: [
     "airbnb",
     "plugin:react-hooks/recommended",
-    // "plugin:@typescript-eslint/eslint-recommended",
-    // "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
-    // "plugin:import/typescript",
+    "plugin:import/typescript",
     "prettier",
   ],
-  plugins: ["react", "prettier"],
-  // "plugins": ["react", "prettier", "@typescript-eslint"],
+  // plugins: ["react", "prettier"],
+  plugins: ["react", "prettier", "@typescript-eslint"],
   rules: {
+    "no-use-before-define": "off",
     "react/jsx-filename-extension": [
       1,
       {
@@ -48,7 +49,7 @@ module.exports = {
     ],
     "import/extensions": ["error", "never"],
     "import/no-default-export": "error",
-    // "@typescript-eslint/no-unused-vars": ["error"]
+    "@typescript-eslint/no-unused-vars": ["error"],
   },
   env: {
     browser: true,
@@ -60,6 +61,6 @@ module.exports = {
       jsx: true,
     },
   },
-  // "parser": "@typescript-eslint/parser"
-  parser: "@babel/eslint-parser",
+  parser: "@typescript-eslint/parser",
+  // parser: "@babel/eslint-parser",
 };

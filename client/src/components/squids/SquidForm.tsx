@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { Dispatch, FC, SetStateAction, useState } from "react";
 
 import { useForm } from "react-hook-form";
 
 import { validInput } from "../services/validInput";
 import { useCreateSquidMutation } from "./hooks/useCreateSquidMutation";
 
-const SquidForm = ({ setDisplay, setFormSuccess, setRedirect }) => {
-  const [success, setSuccess] = useState(false);
+interface SquidFormProps {
+  setDisplay: Dispatch<SetStateAction<boolean>>;
+  setFormSuccess: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface SquidData {
+  name: string;
+  species: string;
+  specialPower: string;
+  experiencePoints: string;
+  errors?: string;
+}
+
+const SquidForm = ({ setDisplay, setFormSuccess }: SquidFormProps): FC<SquidFormProps> => {
+  const [success, setSuccess] = useState<boolean>(false);
   const [inputErrors, setInputErrors] = useState({});
 
   const {
@@ -29,7 +42,7 @@ const SquidForm = ({ setDisplay, setFormSuccess, setRedirect }) => {
     setSuccess(false);
   };
 
-  const onSubmit = async (squidFormData) => {
+  const onSubmit = (squidFormData: SquidData) => {
     const postSquidData = validInput(squidFormData);
     if (postSquidData.errors) {
       setInputErrors(postSquidData.errors);

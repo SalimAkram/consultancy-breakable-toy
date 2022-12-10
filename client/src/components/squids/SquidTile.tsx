@@ -1,6 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 
-const SquidTile = ({ squid }) => {
+interface Squid {
+  name: string;
+  species: string;
+  specialPower: string;
+  experiencePoints: number;
+}
+
+const SquidTile = ({ squid }: Squid): FC<Squid> => {
   const { name, species, specialPower, experiencePoints } = squid;
   return (
     <div className="squids__tile">

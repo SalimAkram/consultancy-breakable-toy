@@ -2,7 +2,7 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-export const TopBar = () => (
+export const TopBar = (): JSX.Element => (
   <div className="top-bar">
     <ul className="top-bar__menu">
       <li className="top-bar__title">The Squids</li>

@@ -7,10 +7,10 @@ import { SquidForm } from "./SquidForm";
 import { SquidRefreshButton } from "./squidRefreshButton";
 import { Squids } from "./Squids";
 
-const SquidIndex = () => {
-  const [page, setPage] = useState(0);
-  const [display, setDisplay] = useState(false);
-  const [formSuccess, setFormSuccess] = useState(false);
+const SquidIndex = (): JSX.Element => {
+  const [page, setPage] = useState<number>(0);
+  const [display, setDisplay] = useState<boolean>(false);
+  const [formSuccess, setFormSuccess] = useState<boolean>(false);
 
   const pageSize = 10;
   const squids = useFetchSquids({ page, pageSize });
