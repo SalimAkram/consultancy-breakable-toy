@@ -47,15 +47,15 @@ module.exports = {
   ],
   module: {
     rules: [
-      // {
-      //   test: /\.(ts|tsx)$/,
-      //   exclude: /(node_modules|bower_components)/,
-      //   loader: "awesome-typescript-loader",
-      //   options: {
-      //     // useCache: true,
-      //     transpileOnly: true,
-      //   },
-      // },
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "ts-loader",
+        options: {
+          // useCache: true,
+          transpileOnly: true,
+        },
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,

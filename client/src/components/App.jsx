@@ -7,7 +7,8 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { TopBar } from "./layout/TopBar";
-import { SquidIndex } from "./squids/SquidIndex";
+import { SquidIndex } from "./squids/SquidIndex.tsx";
+import { SquidShow } from "./squids/SquidShow";
 
 import "../style/main.pcss";
 import "../style/squids/squids.pcss";
@@ -34,6 +35,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" />
           <Route exact path="/squids" component={SquidIndex} />
+          <Route exact path="/squids/:id" component={SquidShow} />
         </Switch>
       </Router>
       <ReactQueryDevtools initialIsOpen={false} />

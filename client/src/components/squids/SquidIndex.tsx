@@ -7,15 +7,16 @@ import { SquidForm } from "./SquidForm";
 import { SquidRefreshButton } from "./squidRefreshButton";
 import { Squids } from "./Squids";
 
-const SquidIndex = () => {
-  const [page, setPage] = useState(0);
-  const [display, setDisplay] = useState(false);
-  const [formSuccess, setFormSuccess] = useState(false);
+const SquidIndex = (): JSX.Element => {
+  const [page, setPage] = useState<number>(0);
+  const [display, setDisplay] = useState<boolean>(false);
+  const [formSuccess, setFormSuccess] = useState<boolean>(false);
+  const [redirect, setRedirect] = useState<boolean>(false)
 
   const pageSize = 10;
   const squids = useFetchSquids({ page, pageSize });
   const pageCount = getPageCount(squids?.squids?.total, pageSize);
-  const pages = pageCount?.map((pageNumber) => (
+  const pages = pageCount?.map((pageNumber: number) => (
     <button
       key={pageNumber}
       className="pagination__pages pagination__pages--active"
@@ -54,7 +55,15 @@ const SquidIndex = () => {
           <SquidRefreshButton setFormSuccess={setFormSuccess} />
         </div>
       )}
-      <div>{display && <SquidForm setDisplay={setDisplay} setFormSuccess={setFormSuccess} />}</div>
+      <div>
+        {display && (
+          <SquidForm
+            setDisplay={setDisplay}
+            setFormSuccess={setFormSuccess}
+            setRedirect={setRedirect}
+          />
+        )}
+      </div>
       <Squids squids={squids?.squids.results} />
       <Pagination page={page} pages={pages} setPage={setPage} />
     </div>
