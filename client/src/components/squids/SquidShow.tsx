@@ -2,13 +2,24 @@ import React from "react";
 
 import { useParams } from "react-router-dom";
 
-import { getZodiacSign } from "../services/getZodiacSign.ts";
+import { getZodiacSign } from "../services/getZodiacSign";
 import { useFetchSquid } from "./hooks/useFetchSquid";
 
-const SquidShow = () => {
-  const { id } = useParams();
-  const squid = useFetchSquid({ id });
-  const zodiacSign = getZodiacSign(squid);
+export interface SquidShow {
+  data?: {
+    name: string;
+    species: string;
+    specialPower: string;
+    experiencePoints: number;
+    birthday: string;
+    id: string;
+  };
+}
+
+const SquidShow = (): JSX.Element => {
+  const { id } = useParams<{ id: string }>();
+  const squid: SquidShow = useFetchSquid({ id });
+  const zodiacSign: string | null = getZodiacSign(squid);
   return (
     <div className="squids__tile">
       <ul className="squids__list">

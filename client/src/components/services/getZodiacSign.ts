@@ -1,17 +1,8 @@
 import { getZodiac } from "horoscope";
+import { SquidShow } from "../squids/SquidShow"
 
-interface SquidProperties {
-  data: {
-    birthday: string,
-    experiencePoints: number,
-    name: string,
-    specialPower: string,
-    species: string
-  }
-}
-
-const getZodiacSign = (squid: SquidProperties): string | null => {  
-  const year: number | string = squid.data?.birthday.slice(squid.data.birthday.length - 4);
+const getZodiacSign = (squid: SquidShow): string | null => {  
+  const year: number | string | undefined = squid.data?.birthday.slice(squid.data.birthday.length - 4);
   if (year) {
     return getZodiac(+year);
   }

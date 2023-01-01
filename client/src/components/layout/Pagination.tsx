@@ -1,6 +1,12 @@
-import React from "react";
+import React, { Dispatch, ReactElement, SetStateAction } from "react";
 
-const Pagination = ({ page, pages, setPage }) => (
+interface PaginationProps {
+  page: number;
+  pages: JSX.Element[]
+  setPage: Dispatch<SetStateAction<number>>
+}
+
+const Pagination = ({ page, pages, setPage }: PaginationProps): ReactElement<PaginationProps> => (
   <div>
     <div className="pagination__buttons">
       <button

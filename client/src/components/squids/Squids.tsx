@@ -1,19 +1,14 @@
 import React, { ReactElement } from "react";
+import { Squid } from "./Squid";
 
 import { SquidTile } from "./SquidTile";
 
-export interface Squid {
-  id: string;
-  name: string;
-  species: string;
-  specialPower: String;
-  experiencePoints: number;
+interface SquidsProps {
+  squids: Squid[] | undefined;
 }
 
-const Squids = ({ squids }): ReactElement=> {
-  console.log(squids);
-  
-  const squidsArray: Squid[] = squids?.map((squid: Squid) => (
+const Squids = ({ squids }: SquidsProps): JSX.Element => {
+  const squidsArray = squids?.map((squid) => (
     <div className="squids__tile" key={squid.id}>
       <SquidTile squid={squid} />
     </div>

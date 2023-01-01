@@ -1,9 +1,8 @@
-import React, { FC, ReactElement } from "react";
+import React, { ReactElement } from "react";
 
 import { Link } from "react-router-dom";
-import { Squid } from "./Squids"
-
-const SquidTile = ({ squid }: Squid): FC<Squid> => {
+import { Squid } from "./Squid";
+const SquidTile = ({ squid }: { squid: Squid }): JSX.Element => {
   const { name, species, specialPower, experiencePoints, id } = squid;
   return (
     <Link to={`/squids/${id}`}>

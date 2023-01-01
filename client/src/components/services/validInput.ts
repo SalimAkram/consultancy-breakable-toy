@@ -1,31 +1,23 @@
-import { SquidData } from "../squids/SquidForm"
-import { prepSquidData } from "./prepSquidData";
-
-interface ValidFormData {
-  name: string,
-  species: string,
-  specialPower: string,
-  experiencePoints: number
+interface ValidInput {
+  [key: string]: string;
 }
-
-const validInput = (formData: ValidFormData): SquidData => {  
-  let submitErrors: {
-    errors: string;
-  } = { errors: "" };
-  const requiredFields: string[] = ["name", "species"];
+const validInput = (formData: ValidInput) => {
+  let errors: {
+    errors: string | null
+  } = { errors: null };
+  const requiredFields = ["name", "species"];
   requiredFields.forEach((field) => {
     if (formData[field].trim() === "") {
-      submitErrors = {
-        ...submitErrors,
+      errors = {
+        ...errors,
         [field]: "is blank",
       };
     }
-  });
-
-  if (Object.keys(submitErrors).length === 0) {
-    return prepSquidData(formData);
-  }
-  return { errors: submitErrors };
+  });  
+  if (Object.keys(errors).length > 1) {
+    debugger
+    return { errors };
+  } 
 };
 
 export { validInput };

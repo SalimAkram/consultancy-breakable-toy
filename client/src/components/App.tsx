@@ -7,7 +7,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { TopBar } from "./layout/TopBar";
-import { SquidIndex } from "./squids/SquidIndex.tsx";
+import { SquidIndex } from "./squids/SquidIndex";
 import { SquidShow } from "./squids/SquidShow";
 
 import "../style/main.pcss";

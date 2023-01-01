@@ -1,62 +1,70 @@
-import React, { Dispatch, FC, FunctionComponent, ReactElement, SetStateAction, useState } from "react";
+import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { validInput } from "../services/validInput";
 import { useCreateSquidMutation } from "./hooks/useCreateSquidMutation";
-
+import { prepSquidData } from "../services/prepSquidData";
+import { DatabaseErrors, Errors } from "./Errors";
 interface SquidFormProps {
   setDisplay: Dispatch<SetStateAction<boolean>>;
   setFormSuccess: Dispatch<SetStateAction<boolean>>;
-  setRedirect: Dispatch<SetStateAction<boolean>>
 }
-
-export interface SquidData {
+export interface SquidFormData {
+  [key: string]: string;
   name: string;
   species: string;
   specialPower: string;
-  experiencePoints: string | number;
-  errors?: string;
+  experiencePoints: string;
 }
-const SquidForm = ({ setDisplay, setFormSuccess, setRedirect }: SquidFormProps): ReactElement<SquidFormProps> => {
+
+const SquidForm = ({ setDisplay, setFormSuccess }: SquidFormProps): JSX.Element => {
   const [success, setSuccess] = useState<boolean>(false);
-  const [inputErrors, setInputErrors] = useState({});
+  const [redirect, setRedirect] = useState<boolean>(false);
+  const [inputErrors, setInputErrors] = useState<Errors | null>(null);
+  const [databaseErrors, setDatabaseErrors] = useState<DatabaseErrors | null>(null);
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm({
+  } = useForm<SquidFormData>({
     defaultValues: {
       name: "",
       species: "",
-      specialPower: [],
+      specialPower: "",
       experiencePoints: "",
     },
   });
   const squidPost = useCreateSquidMutation();
   const clear = () => {
     reset();
-    setInputErrors({});
+    setInputErrors(null);
+    setDatabaseErrors(null);
     setSuccess(false);
   };
 
-  const onSubmit = (squidFormData: SquidData) => {
-    const postSquidData = validInput(squidFormData);
-    if (postSquidData.errors) {
-      setInputErrors(postSquidData.errors);
+  const onSubmit: SubmitHandler<SquidFormData> = (squidFormData: SquidFormData) => {
+    const invalidSquidData = validInput(squidFormData);
+    if (invalidSquidData) {
+      console.log(invalidSquidData);
+      setInputErrors(invalidSquidData);
     } else {
-      squidPost.mutate(postSquidData, {
-        onSuccess: () => {
-          clear();
-          setDisplay(false);
-          setFormSuccess(true);
-        },
-        onError: (e) => {
-          setInputErrors(e.response.data.errors);
-        },
-      });
+      const postSquidData = prepSquidData(squidFormData);
+      if (postSquidData) {
+        console.log(postSquidData);
+        squidPost.mutate(postSquidData, {
+          onSuccess: () => {
+            clear();
+            setDisplay(false);
+            setFormSuccess(true);
+          },
+          onError: (error) => {
+            setDatabaseErrors(error?.response.data.errors);
+          },
+        });
+      }
     }
   };
 
@@ -71,8 +79,8 @@ const SquidForm = ({ setDisplay, setFormSuccess, setRedirect }: SquidFormProps):
             {...register("name", { required: "Your squids gotta have a name!" })}
             id="name"
           />
-          {inputErrors.name && <p className="form__error">Invalid Input</p>}
-          {inputErrors && <p className="form__error">{inputErrors.data?.name[0]?.message}</p>}
+          {inputErrors?.name && <p className="form__error">Invalid Input</p>}
+          {databaseErrors && <p className="form__error">{databaseErrors.data?.name[0].message}</p>}
           <p className="form__error">{errors.name?.message}</p>
         </label>
       </div>
@@ -85,7 +93,7 @@ const SquidForm = ({ setDisplay, setFormSuccess, setRedirect }: SquidFormProps):
             {...register("species", { required: "Your squids gotta have a species!" })}
             id="species"
           />
-          {inputErrors.species && <p className="form__error">Invalid Input</p>}
+          {inputErrors?.species && <p className="form__error">Invalid Input</p>}
           <p className="form__error">{errors.species?.message}</p>
         </label>
       </div>

@@ -50,6 +50,7 @@ squidsRouter.post(
       return res.status(201).json({ newSquid });
     } catch (error) {
       if (error instanceof ValidationError) {
+        console.log(error.data);
         res.status(400).json({ errors: error });
       }
       res.status(500).json({ errors: error });
