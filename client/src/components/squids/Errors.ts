@@ -1,7 +1,7 @@
 export interface Errors {
   errors: {
     errors: string | null;
-  }
+  };
   name?: string;
   species?: string;
 }
@@ -9,5 +9,5 @@ export interface Errors {
 export interface DatabaseErrors {
   data: {
     name: string;
-  }
+  };
 }
