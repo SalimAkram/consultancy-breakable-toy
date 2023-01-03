@@ -15,7 +15,6 @@ const validInput = (formData: ValidInput) => {
     }
   });  
   if (Object.keys(errors).length > 1) {
-    debugger
     return { errors };
   } 
 };

@@ -7,7 +7,7 @@ const cleanUserInput = (formInput) => {
   })
   const newFormInput = {
     ...formInput,
-    name: textInputs.name,
+    name: textInputs.name.toLowerCase().trimStart().trimEnd(),
     species: textInputs.species
   }
   return newFormInput;

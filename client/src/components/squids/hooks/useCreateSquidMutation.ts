@@ -1,6 +1,5 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useMutation } from "react-query";
-import { DatabaseErrors } from "../Errors";
 import { Squid } from "../Squid";
 
 const useCreateSquidMutation = () =>
@@ -8,8 +7,9 @@ const useCreateSquidMutation = () =>
     await axios
       .post("api/v1/squids", squidValues)
       .then((resp) => resp.data)
-      .catch((error: DatabaseErrors) => {
-        throw error;
+      .catch((error: AxiosError) => {
+        const errorMessage: string = error.response?.data.errors.data.name[0].message;
+        throw new Error(errorMessage);
       });
   });
 

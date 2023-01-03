@@ -1,16 +1,16 @@
-import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { validInput } from "../services/validInput";
 import { useCreateSquidMutation } from "./hooks/useCreateSquidMutation";
 import { prepSquidData } from "../services/prepSquidData";
-import { DatabaseErrors, Errors } from "./Errors";
+import { InputErrors } from "./Errors";
 interface SquidFormProps {
   setDisplay: Dispatch<SetStateAction<boolean>>;
   setFormSuccess: Dispatch<SetStateAction<boolean>>;
 }
-export interface SquidFormData {
+interface SquidFormData {
   [key: string]: string;
   name: string;
   species: string;
@@ -21,8 +21,8 @@ export interface SquidFormData {
 const SquidForm = ({ setDisplay, setFormSuccess }: SquidFormProps): JSX.Element => {
   const [success, setSuccess] = useState<boolean>(false);
   const [redirect, setRedirect] = useState<boolean>(false);
-  const [inputErrors, setInputErrors] = useState<Errors | null>(null);
-  const [databaseErrors, setDatabaseErrors] = useState<DatabaseErrors | null>(null);
+  const [inputErrors, setInputErrors] = useState<InputErrors | null>(null);
+  const [databaseErrors, setDatabaseErrors] = useState<string | null>(null);
 
   const {
     register,
@@ -48,12 +48,10 @@ const SquidForm = ({ setDisplay, setFormSuccess }: SquidFormProps): JSX.Element 
   const onSubmit: SubmitHandler<SquidFormData> = (squidFormData: SquidFormData) => {
     const invalidSquidData = validInput(squidFormData);
     if (invalidSquidData) {
-      console.log(invalidSquidData);
       setInputErrors(invalidSquidData);
     } else {
       const postSquidData = prepSquidData(squidFormData);
       if (postSquidData) {
-        console.log(postSquidData);
         squidPost.mutate(postSquidData, {
           onSuccess: () => {
             clear();
@@ -61,7 +59,9 @@ const SquidForm = ({ setDisplay, setFormSuccess }: SquidFormProps): JSX.Element 
             setFormSuccess(true);
           },
           onError: (error) => {
-            setDatabaseErrors(error?.response.data.errors);
+            if (error instanceof Error) {
+              setDatabaseErrors(error.message);
+            }
           },
         });
       }
@@ -79,8 +79,8 @@ const SquidForm = ({ setDisplay, setFormSuccess }: SquidFormProps): JSX.Element 
             {...register("name", { required: "Your squids gotta have a name!" })}
             id="name"
           />
-          {inputErrors?.name && <p className="form__error">Invalid Input</p>}
-          {databaseErrors && <p className="form__error">{databaseErrors.data?.name[0].message}</p>}
+          {inputErrors?.errors.name && <p className="form__error">Invalid Input</p>}
+          {databaseErrors && <p className="form__error">{databaseErrors}</p>}
           <p className="form__error">{errors.name?.message}</p>
         </label>
       </div>
@@ -93,7 +93,7 @@ const SquidForm = ({ setDisplay, setFormSuccess }: SquidFormProps): JSX.Element 
             {...register("species", { required: "Your squids gotta have a species!" })}
             id="species"
           />
-          {inputErrors?.species && <p className="form__error">Invalid Input</p>}
+          {inputErrors?.errors.species && <p className="form__error">Invalid Input</p>}
           <p className="form__error">{errors.species?.message}</p>
         </label>
       </div>
