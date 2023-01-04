@@ -19,8 +19,6 @@ interface SquidFormData {
 }
 
 const SquidForm = ({ setDisplay, setFormSuccess }: SquidFormProps): JSX.Element => {
-  const [success, setSuccess] = useState<boolean>(false);
-  const [redirect, setRedirect] = useState<boolean>(false);
   const [inputErrors, setInputErrors] = useState<InputErrors | null>(null);
   const [databaseErrors, setDatabaseErrors] = useState<string | null>(null);
 
@@ -42,7 +40,6 @@ const SquidForm = ({ setDisplay, setFormSuccess }: SquidFormProps): JSX.Element 
     reset();
     setInputErrors(null);
     setDatabaseErrors(null);
-    setSuccess(false);
   };
 
   const onSubmit: SubmitHandler<SquidFormData> = (squidFormData: SquidFormData) => {
@@ -150,18 +147,6 @@ const SquidForm = ({ setDisplay, setFormSuccess }: SquidFormProps): JSX.Element 
           <p className="form__error">{errors.experiencePoints?.message}</p>
         </label>
       </div>
-      {success && (
-        <div>
-          <p className="squids__success">Squid Post Successful!</p>
-          <button
-            type="button"
-            onClick={() => setRedirect(true)}
-            className="form__button form__button--active"
-          >
-            click to see your new Squid!
-          </button>
-        </div>
-      )}
       <div>
         <input type="submit" value="submit" className="form__button form__button--active" />
         <button type="button" onClick={() => clear()} className="form__button form__button--active">
